@@ -135,6 +135,7 @@
             padding: 4px;
             position: relative;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
         .tycoon-corner {
             background: linear-gradient(135deg, #fcd34d 0%, #d97706 100%);
@@ -270,7 +271,7 @@
                     <div>
                         <div class="text-5xl mb-4 drop-shadow-md">🏢</div>
                         <h2 class="text-2xl text-amber-400 mb-2 font-display italic">Publishing Tycoon</h2>
-                        <p class="text-indigo-100 text-sm mb-6">Monopoly style! Roll the dice, land on publishing houses, answer questions, and avoid bad reviews!</p>
+                        <p class="text-indigo-100 text-sm mb-6">True Monopoly! Land on offices, answer questions to claim them, and charge the other team royalties!</p>
                     </div>
                     <button class="w-full bg-indigo-950 hover:bg-indigo-900 text-amber-400 border border-amber-500/30 font-bold py-3 rounded text-lg transition-all tracking-wider font-display">Roll the Dice</button>
                 </div>
@@ -338,7 +339,6 @@
                     <div class="text-3xl font-display text-amber-400" id="res-score">Matches: 0 / 8</div>
                 </div>
 
-                <!-- Adjustable Timer for Memory Match -->
                 <div class="bg-black/30 rounded-xl p-4 mb-8 text-center max-w-md mx-auto shadow-inner border border-amber-500/20">
                     <div class="text-5xl font-display text-white mb-2 tracking-widest" id="res-timer-display">01:00</div>
                     <div class="flex justify-center items-center gap-3 mb-4">
@@ -438,7 +438,6 @@
                     <p class="text-indigo-300 font-bold uppercase tracking-widest text-sm mb-6">Create a logical sentence connecting these exactly 2 words:</p>
                     <div id="sn-words-container" class="flex flex-col md:flex-row flex-wrap justify-center gap-6 mb-8 items-center min-h-[5rem]"></div>
                     
-                    <!-- Reveal Button & Meaningful Example -->
                     <div class="mb-10 max-w-3xl mx-auto">
                         <button onclick="toggleSentenceExample()" class="text-sm font-bold text-amber-500 hover:text-white border border-amber-500/50 px-4 py-2 rounded-full transition mb-4">Teacher: Reveal Example Sentence</button>
                         <div id="sn-example-box" class="hidden bg-amber-900/40 border border-amber-500/50 p-6 rounded-xl shadow-inner">
@@ -464,16 +463,13 @@
                     </div>
                 </div>
 
-                <!-- Settings Bar for Risky Mode and Global Timer -->
                 <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700 shadow-md flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-                    <!-- Mode Selector -->
                     <div class="flex items-center gap-4">
                         <span class="text-indigo-300 text-sm font-bold uppercase tracking-widest">Game Mode:</span>
                         <button id="jeop-mode-btn" onclick="toggleJeopMode()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-bold transition shadow-md border border-emerald-500">Normal (Safe)</button>
                         <span id="jeop-mode-desc" class="text-xs text-slate-400 italic hidden md:inline">Wrong answers do not lose points.</span>
                     </div>
                     
-                    <!-- Adjustable Global Timer -->
                     <div class="flex items-center gap-3 bg-black/40 p-2 rounded-lg border border-slate-600">
                         <span class="text-indigo-300 text-xs font-bold uppercase tracking-widest mr-2">Base Timer:</span>
                         <button onclick="adjustJeopGlobalTimer(-5)" class="text-amber-500 hover:text-amber-300 font-bold px-2 text-lg">-5s</button>
@@ -483,19 +479,15 @@
                 </div>
 
                 <div class="bg-slate-900 p-3 rounded-xl border-2 border-slate-700 shadow-2xl overflow-x-auto">
-                    <div id="jeopardy-board">
-                        <!-- Headers & Cells injected by JS as a strict 5-col grid -->
-                    </div>
+                    <div id="jeopardy-board"></div>
                 </div>
 
-                <!-- Jeopardy Modal with Timer and Go Back -->
                 <div id="jeop-modal" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
                     <div class="bg-slate-900 p-8 md:p-12 rounded-3xl border-2 border-amber-600 max-w-4xl w-full text-center relative shadow-2xl">
                         
                         <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-700 pb-6 gap-4">
                             <h3 id="jeop-cat-val" class="text-amber-400 font-display text-3xl uppercase tracking-widest"></h3>
                             
-                            <!-- Live Question Timer -->
                             <div class="flex items-center gap-3 bg-black/60 p-3 rounded-xl border border-slate-600">
                                 <span class="text-indigo-300 text-xs font-bold uppercase tracking-widest">Time:</span>
                                 <span id="jeop-timer-display" class="text-4xl font-mono text-rose-400 font-bold w-20 text-center drop-shadow-md">30</span>
@@ -531,7 +523,6 @@
 
                         <div class="flex justify-center gap-6 mt-10">
                             <button id="jeop-reveal-btn" onclick="document.getElementById('jeop-answer-area').classList.remove('hidden'); this.classList.add('hidden'); clearInterval(jeopTimerInterval);" class="bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-xl transition text-2xl shadow-lg font-display tracking-widest flex-1 max-w-sm">Reveal Answer</button>
-                            <!-- Go Back Button -->
                             <button onclick="cancelJeopardy()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-xl transition text-sm uppercase tracking-widest border border-slate-600">Go Back / Cancel</button>
                         </div>
                     </div>
@@ -548,31 +539,22 @@
                 </div>
 
                 <div class="grid lg:grid-cols-3 gap-10">
-                    <!-- Q&A Area -->
                     <div class="lg:col-span-2 flex flex-col justify-end">
                         <div class="bg-slate-900 border-2 border-amber-500/50 rounded-2xl p-10 mb-8 shadow-xl relative min-h-[250px] flex items-center justify-center text-center">
-                            <!-- 15-Second Timer Display -->
                             <div id="mil-timer-display" class="hidden absolute top-4 right-4 bg-rose-600/20 border-2 border-rose-500 text-rose-400 w-14 h-14 rounded-full flex items-center justify-center text-2xl font-mono font-bold shadow-[0_0_15px_rgba(225,29,72,0.4)]">15</div>
-                            
                             <h3 id="mil-q-text" class="text-2xl md:text-4xl text-white font-display italic leading-relaxed"></h3>
                         </div>
 
-                        <!-- Lifelines -->
                         <div class="flex justify-center gap-4 mb-6">
                             <button id="btn-5050" onclick="use5050()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-full border-2 border-amber-300 shadow-lg transition-all text-sm tracking-widest uppercase">50 / 50</button>
-                            <!-- Ask the Audience -->
                             <button id="btn-audience" onclick="useAudience()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-full border-2 border-indigo-300 shadow-lg transition-all text-sm tracking-widest uppercase">Ask Audience</button>
                         </div>
                         
-                        <!-- Audience Poll Results -->
                         <div id="mil-audience-poll" class="hidden bg-indigo-900/40 border border-indigo-500/50 p-5 rounded-xl mb-6 text-white text-sm font-medium shadow-inner"></div>
 
-                        <div id="mil-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Answer buttons injected here -->
-                        </div>
+                        <div id="mil-options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                     </div>
 
-                    <!-- Prize Ladder -->
                     <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 shadow-inner text-right font-display text-xl tracking-wider flex flex-col justify-end gap-3" id="mil-ladder">
                         <div class="ladder-step py-1 px-4" data-level="9">1,000,000 Copies</div>
                         <div class="ladder-step py-1 px-4" data-level="8">500,000 Copies</div>
@@ -601,18 +583,13 @@
                     </div>
                 </div>
 
-                <!-- Grid of 24 boxes -->
                 <div class="bg-slate-900 p-4 rounded-xl border-2 border-slate-700 shadow-2xl">
-                    <div id="bbz-board" class="grid grid-cols-4 md:grid-cols-6 gap-3">
-                        <!-- Tiles injected by JS -->
-                    </div>
+                    <div id="bbz-board" class="grid grid-cols-4 md:grid-cols-6 gap-3"></div>
                 </div>
 
-                <!-- Modals for Questions and Powers -->
                 <div id="bbz-modal" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
                     <div class="bg-slate-900 p-8 md:p-12 rounded-3xl border-2 border-amber-600 max-w-4xl w-full text-center relative shadow-2xl">
                         
-                        <!-- Question UI -->
                         <div id="bbz-q-area" class="hidden">
                             <p id="bbz-q-text" class="text-white text-4xl md:text-5xl font-display italic mb-12 leading-relaxed"></p>
                             
@@ -634,7 +611,6 @@
                             </div>
                         </div>
 
-                        <!-- Power Up UI -->
                         <div id="bbz-p-area" class="hidden">
                             <h3 id="bbz-p-title" class="text-6xl font-display text-amber-400 mb-8 uppercase tracking-widest animate-pulse"></h3>
                             <p id="bbz-p-desc" class="text-white text-3xl mb-16 font-medium italic"></p>
@@ -651,7 +627,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 9: PUBLISHING TYCOON (Monopoly Style) ================= -->
+        <!-- ================= VIEW 9: PUBLISHING TYCOON (True Monopoly) ================= -->
         <div id="view-tycoon" class="view">
             <div class="glass gold-border rounded-3xl p-6 md:p-10 relative max-w-6xl mx-auto">
                 <div class="flex justify-between items-center mb-6">
@@ -677,9 +653,9 @@
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-600 text-sm text-slate-300 shadow-inner">
                             <h4 class="font-bold text-amber-400 mb-2 uppercase tracking-widest border-b border-slate-700 pb-1">Rules of Publishing</h4>
                             <ul class="list-disc pl-4 space-y-1">
-                                <li>Land on an Office: Answer correctly to earn royalties ($200).</li>
-                                <li>Plot Twists: Draw a mystery card.</li>
-                                <li>Editing Fees: Pay the bank.</li>
+                                <li><strong>Unowned Office:</strong> Answer correctly to buy it for $100.</li>
+                                <li><strong>Owned Office:</strong> Land here and pay $100 Royalties to the owner!</li>
+                                <li><strong>Plot Twists:</strong> Draw a mystery card.</li>
                                 <li>Go bankrupt? Your book is cancelled!</li>
                             </ul>
                         </div>
@@ -690,7 +666,7 @@
                         <div class="tycoon-board bg-white/5 p-2 rounded-2xl backdrop-blur-md border border-white/10" id="tycoon-board-grid">
                             <!-- Spaces injected by JS -->
                             
-                            <!-- Center Area (Dice & Events) -->
+                            <!-- Center Area -->
                             <div class="tycoon-center text-center relative z-0">
                                 <h3 class="text-2xl font-display text-white mb-2 tracking-widest uppercase" id="tyc-turn-indicator">Team A's Turn</h3>
                                 <p class="text-indigo-300 text-sm mb-6 italic" id="tyc-status-text">Ready to draft.</p>
@@ -718,9 +694,7 @@
                         <h3 id="tyc-modal-title" class="text-3xl md:text-4xl font-display text-white mb-6"></h3>
                         <p id="tyc-modal-desc" class="text-xl text-indigo-200 mb-8 font-serif leading-relaxed"></p>
                         
-                        <div id="tyc-options-area" class="grid gap-4 mb-6">
-                            <!-- Answer buttons injected here -->
-                        </div>
+                        <div id="tyc-options-area" class="grid gap-4 mb-6"></div>
                         
                         <div id="tyc-action-area" class="hidden">
                             <button onclick="closeTycoonModal()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-4 px-10 rounded-xl transition text-xl shadow-[0_4px_0_#92400e] w-full max-w-sm mx-auto uppercase tracking-widest">Continue</button>
@@ -751,10 +725,8 @@
     <!-- SCRIPTS -->
     <script>
         // ==========================================
-        // DATA BANKS (Based entirely on the new literary vocabulary)
+        // DATA BANKS
         // ==========================================
-        
-        // 1. Vocabulary for Speed Run & Hangman
         const vocabData = [
             { word: "manuscript", def: "A book, document, or piece of music written by hand rather than typed or printed." },
             { word: "narrative", def: "A spoken or written account of connected events; a story." },
@@ -778,7 +750,6 @@
             { word: "browsing", def: "Surveying goods for sale in a leisurely and casual way." }
         ];
 
-        // 2. Memory Match Pairs (Associations / Synonyms / Antonyms)
         const memoryPairsData = [
             { id: 1, text: "Verse" }, { id: 1, text: "Prose" },
             { id: 2, text: "Fiction" }, { id: 2, text: "Myth" },
@@ -790,7 +761,6 @@
             { id: 8, text: "Beneficial" }, { id: 8, text: "Disastrous" }
         ];
 
-        // 3. Deadline Defuse (Context Sentences with 20 questions)
         const bombQuestions = [
             { q: "The author's latest book is a thrilling ____.", a: "narrative", w1: "clearance", w2: "projection" },
             { q: "Before publishing, she wrote the entire ____ by hand.", a: "manuscript", w1: "commercial", w2: "study" },
@@ -814,7 +784,6 @@
             { q: "The ____ of the story was the voice of an old man.", a: "narrator", w1: "setting", w2: "conception" }
         ];
 
-        // 4. Plot Clash (Sentence making with strictly 2 words + meaningful context)
         const sentenceGroups = [
             { words: ["Suspenseful", "Narrative"], example: "The author crafted a highly suspenseful narrative that kept readers guessing until the very end." },
             { words: ["Manuscript", "Published"], example: "After years of careful editing, the original manuscript was finally published as a hardcover book." },
@@ -828,7 +797,6 @@
             { words: ["Myth", "Conception"], example: "The ancient myth shaped their early conception of how the universe was created." }
         ];
 
-        // 5. Literary Jeopardy Categories (Strict 5 columns)
         const jeopardyCategories = [
             {
                 name: "Literary Elements",
@@ -877,7 +845,6 @@
             }
         ];
 
-        // 6. Bestseller Trivia (Millionaire)
         const mogulQuestions = [
             { q: "Which word means 'able to read and write'?", options: ["Credible", "Literate", "Empathic", "Obedient"], ans: 1 },
             { q: "A brief summary of a book's plot is called a...", options: ["Manuscript", "Metaphor", "Synopsis", "Diversion"], ans: 2 },
@@ -896,7 +863,6 @@
             { q: "The process of coming into existence or prominence is...", options: ["Acquisition", "Treatment", "Amusement", "Emergence"], ans: 3 }
         ];
 
-        // 7. Writer's Block (Baamboozle)
         const baamData = [
             { type: 'q', q: "A spoken or written account of connected events; a story.", a: "Narrative" },
             { type: 'q', q: "A journey undertaken by a group with a particular purpose.", a: "Expedition" },
@@ -917,7 +883,7 @@
             { type: 'q', q: "Complying or willing to comply with orders or requests.", a: "Obedient" },
             { type: 'q', q: "Able to stick fast to a surface or object; sticky.", a: "Adhesive" },
 
-            // Power-ups (Literary Themed)
+            // Power-ups
             { type: 'p', action: 'gain', amount: 50, title: '🌟 Bestseller!', desc: 'Your book hit #1 on the charts. Gain 50 points!' },
             { type: 'p', action: 'lose', amount: 25, title: '🌪️ Writer\'s Block!', desc: 'You stare at a blank page. Lose 25 points.' },
             { type: 'p', action: 'steal', amount: 50, title: '🕵️ Plagiarized!', desc: 'You stole a great idea. Steal up to 50 points from the rival publisher.' },
@@ -926,24 +892,24 @@
             { type: 'p', action: 'gain', amount: 100, title: '🎬 Movie Adaptation!', desc: 'Hollywood bought the rights to your book! Gain 100 points!' }
         ];
 
-        // 8. Publishing Tycoon (Monopoly Data)
+        // TRUE MONOPOLY DATA
         const tycoonSpaces = [
             { id: 0, name: "START", type: "corner", icon: "🏁", col: 1, row: 1 },
-            { id: 1, name: "The Printing Press", type: "prop", color: "#fca5a5", icon: "🖨️", col: 2, row: 1 },
+            { id: 1, name: "The Printing Press", type: "prop", color: "#fca5a5", icon: "🖨️", col: 2, row: 1, owner: null },
             { id: 2, name: "Plot Twist", type: "chance", icon: "❓", col: 3, row: 1 },
-            { id: 3, name: "Literary Agent", type: "prop", color: "#fca5a5", icon: "🤝", col: 4, row: 1 },
+            { id: 3, name: "Literary Agent", type: "prop", color: "#fca5a5", icon: "🤝", col: 4, row: 1, owner: null },
             { id: 4, name: "PLAGIARISM FINE", type: "penalty", icon: "⚖️", col: 5, row: 1 },
-            { id: 5, name: "Poetry Corner", type: "prop", color: "#93c5fd", icon: "✒️", col: 5, row: 2 },
-            { id: 6, name: "Fiction House", type: "prop", color: "#93c5fd", icon: "🐉", col: 5, row: 3 },
+            { id: 5, name: "Poetry Corner", type: "prop", color: "#93c5fd", icon: "✒️", col: 5, row: 2, owner: null },
+            { id: 6, name: "Fiction House", type: "prop", color: "#93c5fd", icon: "🐉", col: 5, row: 3, owner: null },
             { id: 7, name: "Editing Fees", type: "tax", icon: "💸", col: 5, row: 4 },
             { id: 8, name: "BESTSELLER", type: "bonus", icon: "🌟", col: 5, row: 5 },
-            { id: 9, name: "Library Archives", type: "prop", color: "#86efac", icon: "🏛️", col: 4, row: 5 },
+            { id: 9, name: "Library Archives", type: "prop", color: "#86efac", icon: "🏛️", col: 4, row: 5, owner: null },
             { id: 10, name: "Plot Twist", type: "chance", icon: "❓", col: 3, row: 5 },
-            { id: 11, name: "Local Bookstore", type: "prop", color: "#86efac", icon: "📚", col: 2, row: 5 },
+            { id: 11, name: "Local Bookstore", type: "prop", color: "#86efac", icon: "📚", col: 2, row: 5, owner: null },
             { id: 12, name: "WRITER'S BLOCK", type: "penalty", icon: "🧱", col: 1, row: 5 },
-            { id: 13, name: "Journalism Desk", type: "prop", color: "#fde047", icon: "📰", col: 1, row: 4 },
+            { id: 13, name: "Journalism Desk", type: "prop", color: "#fde047", icon: "📰", col: 1, row: 4, owner: null },
             { id: 14, name: "Marketing Costs", type: "tax", icon: "💸", col: 1, row: 3 },
-            { id: 15, name: "The Grand Publisher", type: "prop", color: "#fde047", icon: "🏢", col: 1, row: 2 }
+            { id: 15, name: "The Grand Publisher", type: "prop", color: "#fde047", icon: "🏢", col: 1, row: 2, owner: null }
         ];
 
         const tycoonQuiz = [
@@ -960,12 +926,12 @@
         ];
 
         const tycoonChance = [
-            { title: "Great Review!", desc: "The New York Times gave your new Novel an amazing review. Your sales are staggering! Collect $200.", change: 200 },
-            { title: "Typo Disaster!", desc: "You printed 10,000 copies with a disastrous typo on the cover. Pay $150 to reprint.", change: -150 },
+            { title: "Great Review!", desc: "The Times gave your Novel an amazing review. Your sales are staggering! Collect $200.", change: 200 },
+            { title: "Typo Disaster!", desc: "You printed 10,000 copies with a disastrous typo on the cover. Pay $150.", change: -150 },
             { title: "Book Deal!", desc: "A major studio wants to turn your Narrative into a movie script. Collect $250!", change: 250 },
             { title: "Coffee Spill!", desc: "You spilled coffee on your only Manuscript. You must pay $100 to hire someone to retype it.", change: -100 },
             { title: "Viral Sensation", desc: "A famous influencer loved your Imagery and promoted your book. Collect $150.", change: 150 },
-            { title: "Lawsuit", desc: "Someone claims your main Character is based on them without permission. Pay $200 in legal fees.", change: -200 }
+            { title: "Lawsuit", desc: "Someone claims your main Character is based on them. Pay $200 in legal fees.", change: -200 }
         ];
 
         // ==========================================
@@ -1013,7 +979,7 @@
         }
 
         // ==========================================
-        // GAME 1: MANUSCRIPT RUSH (Speed Run)
+        // GAME 1: MANUSCRIPT RUSH
         // ==========================================
         let srTimeLeft = 60, srCurrentWord = null, srDeck = [];
         function initSpeedRun() {
@@ -1077,7 +1043,11 @@
             showView('scrambler'); loadHangmanLevel();
         }
         function loadHangmanLevel() {
-            if (scCurrentIndex >= scWords.length) { score += 100; endGame("Draft Complete! The book is ready."); return; }
+            if (scCurrentIndex >= scWords.length) { 
+                const uniqueSet = []; const seen = new Set();
+                for(let item of shuffleArray([...vocabData])) { if(!seen.has(item.word)){ seen.add(item.word); uniqueSet.push(item); } if(uniqueSet.length>=5) break; }
+                scWords = uniqueSet; scCurrentIndex = 0;
+            }
             document.getElementById('sc-progress').textContent = `Draft ${scCurrentIndex + 1} of 5`;
             document.getElementById('sc-score').textContent = `Score: ${score}`;
             const obj = scWords[scCurrentIndex]; scTargetWord = obj.word.toUpperCase(); scGuessedLetters.clear(); scLives = 6;
@@ -1145,7 +1115,7 @@
             
             const grid = document.getElementById('res-grid'); 
             grid.innerHTML = '';
-            grid.classList.add('opacity-50', 'pointer-events-none'); // Locked until start
+            grid.classList.add('opacity-50', 'pointer-events-none');
             
             shuffleArray([...memoryPairsData]).forEach((item, index) => {
                 const card = document.createElement('div');
@@ -1220,7 +1190,7 @@
         }
 
         // ==========================================
-        // GAME 4: DEADLINE DEFUSE (Bomb Game)
+        // GAME 4: DEADLINE DEFUSE
         // ==========================================
         let bombStage = 0, bombTimeLeft = 60, currentBombQ = null, bDeck = [];
         function initDefuse() {
@@ -1263,7 +1233,7 @@
             
             wires.forEach((wire, i) => {
                 const btn = document.createElement('button');
-                btn.className = `${colors[i]} text-white font-bold py-3 rounded-lg w-full transition border-b-4 border-black/30 active:border-b-0 active:translate-y-1 uppercase tracking-widest font-display text-lg`;
+                btn.className = `${colors[i]} text-white font-bold py-4 rounded-lg w-full transition border-b-4 border-black/30 active:border-b-0 active:translate-y-1 uppercase tracking-widest font-display text-lg`;
                 btn.textContent = wire.w;
                 btn.onclick = () => {
                     if(wire.c) { nextBombStage(); } 
@@ -1291,7 +1261,7 @@
             const group = sentenceGroups[Math.floor(Math.random()*sentenceGroups.length)];
             const container = document.getElementById('sn-words-container'); container.innerHTML = '';
             
-            document.getElementById('sn-example-box').classList.add('hidden'); // Hide example box on new draw
+            document.getElementById('sn-example-box').classList.add('hidden');
             
             group.words.forEach((word, i) => {
                 container.innerHTML += `
@@ -1303,7 +1273,6 @@
                     container.innerHTML += `<div class="text-4xl text-slate-500 font-black">+</div>`;
                 }
             });
-            // Store example secretly for teacher reveal
             document.getElementById('sn-example-text').textContent = `"${group.example}"`;
         }
 
@@ -1359,7 +1328,6 @@
             jeopScoreA = 0; jeopScoreB = 0; document.getElementById('jeop-score-a').textContent = 0; document.getElementById('jeop-score-b').textContent = 0;
             const board = document.getElementById('jeopardy-board'); board.innerHTML = '';
             
-            // STRICT 5 COLUMNS
             board.className = "min-w-[800px] grid grid-cols-5 gap-2";
             
             jeopardyCategories.forEach(cat => {
@@ -1381,7 +1349,6 @@
             showView('jeopardy');
         }
 
-        // Timer Logic for Jeopardy Modal
         function updateJeopTimerDisplay() {
             const d = document.getElementById('jeop-timer-display');
             d.innerText = jeopTimeLeft;
@@ -1405,12 +1372,9 @@
         
         function pauseJeopTimer() { 
             if (jeopIsRunning) {
-                jeopIsRunning = false; 
-                clearInterval(jeopTimerInterval); 
+                jeopIsRunning = false; clearInterval(jeopTimerInterval); 
                 document.getElementById('jeop-pause-btn').textContent = "Resume";
-            } else {
-                startJeopTimer();
-            }
+            } else { startJeopTimer(); }
         }
 
         function openJeopardyQ(catName, qObj, val, cellElement) {
@@ -1424,7 +1388,6 @@
             document.getElementById('jeop-reveal-btn').classList.remove('hidden');
             document.getElementById('jeop-modal').classList.remove('hidden');
             
-            // Auto-start the timer based on global clock settings
             jeopTimeLeft = jeopGlobalTime;
             updateJeopTimerDisplay();
             startJeopTimer();
@@ -1445,10 +1408,7 @@
             if(team===1) { jeopScoreA += points; document.getElementById('jeop-score-a').textContent = jeopScoreA; }
             if(team===2) { jeopScoreB += points; document.getElementById('jeop-score-b').textContent = jeopScoreB; }
             
-            // If they got it wrong (deducted points), leave the modal open so the other team can try!
-            if (!isPositive && team !== 0) {
-                return;
-            }
+            if (!isPositive && team !== 0) return;
             
             currentJeopCell.classList.add('opacity-0', 'cursor-default'); currentJeopCell.classList.remove('hover:bg-slate-700', 'active:translate-y-1');
             document.getElementById('jeop-modal').classList.add('hidden');
@@ -1465,12 +1425,9 @@
         let milDeck = [], milLevel = 0;
         const prizeLadder = [100, 500, 1000, 5000, 10000, 50000, 100000, 250000, 500000, 1000000];
         let currentMilQ = null;
-        
-        // Timer Variables
         let milTimerInterval;
         let milTimeLeft = 15;
 
-        // Sound Effects
         const sndCorrect = new Audio('https://www.myinstants.com/media/sounds/extremely-loud-correct-buzzer.mp3');
         const sndIncorrect = new Audio('https://www.myinstants.com/media/sounds/extremely-loud-incorrect-buzzer.mp3');
 
@@ -1480,7 +1437,6 @@
             
             clearInterval(milTimerInterval);
             
-            // Reset Lifelines
             const btn5050 = document.getElementById('btn-5050');
             btn5050.disabled = false;
             btn5050.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-slate-700', 'border-slate-500');
@@ -1522,7 +1478,6 @@
             updateLadderUI();
             currentMilQ = milDeck[milLevel];
             
-            // 15 Second Timer Logic (Only for first 4 questions / Levels 0 to 3)
             const timerDisplay = document.getElementById('mil-timer-display');
             if (milLevel < 4) {
                 timerDisplay.classList.remove('hidden');
@@ -1562,11 +1517,10 @@
             });
         }
 
-        // Handles logic if timer runs out
         function handleMilTimeout() {
             const container = document.getElementById('mil-options');
             Array.from(container.children).forEach(b => b.disabled = true);
-            sndIncorrect.play().catch(e => console.log("Audio blocked by browser"));
+            sndIncorrect.play().catch(e => console.log("Audio blocked"));
             
             Array.from(container.children)[currentMilQ.ans].classList.replace('bg-slate-800', 'bg-emerald-600');
             
@@ -1608,13 +1562,12 @@
 
             setTimeout(() => {
                 let percentages = [0, 0, 0, 0];
-                const correctBoost = Math.floor(Math.random() * 20) + 55; // 55% to 75% accuracy
+                const correctBoost = Math.floor(Math.random() * 20) + 55; 
                 percentages[currentMilQ.ans] = correctBoost;
                 
                 let remaining = 100 - correctBoost;
                 const container = document.getElementById('mil-options');
                 
-                // Distribute remaining points only to visible options
                 let visibleIndices = [];
                 Array.from(container.children).forEach((btn, idx) => {
                     if (idx !== currentMilQ.ans && btn.style.visibility !== 'hidden') {
@@ -1653,14 +1606,14 @@
 
             setTimeout(() => {
                 if (selectedIndex === currentMilQ.ans) {
-                    sndCorrect.play().catch(e => console.log("Audio blocked by browser"));
+                    sndCorrect.play().catch(e => console.log("Audio blocked"));
                     btnElement.classList.replace('bg-amber-500', 'bg-emerald-600');
                     setTimeout(() => {
                         milLevel++;
                         loadMilQuestion();
                     }, 1500);
                 } else {
-                    sndIncorrect.play().catch(e => console.log("Audio blocked by browser"));
+                    sndIncorrect.play().catch(e => console.log("Audio blocked"));
                     btnElement.classList.replace('bg-amber-500', 'bg-rose-600');
                     btnElement.classList.add('animate-shake');
                     Array.from(container.children)[currentMilQ.ans].classList.replace('bg-slate-800', 'bg-emerald-600');
@@ -1758,35 +1711,23 @@
             checkBbzEnd();
         }
 
-        function cancelBbz() {
-            document.getElementById('bbz-modal').classList.add('hidden');
-        }
-
-        function updateBbzScores() {
-            document.getElementById('bbz-score-a').textContent = bbzScoreA;
-            document.getElementById('bbz-score-b').textContent = bbzScoreB;
-        }
-
+        function cancelBbz() { document.getElementById('bbz-modal').classList.add('hidden'); }
+        function updateBbzScores() { document.getElementById('bbz-score-a').textContent = bbzScoreA; document.getElementById('bbz-score-b').textContent = bbzScoreB; }
         function checkBbzEnd() {
             const allCells = document.getElementById('bbz-board').children;
             let finished = true;
-            for(let i=0; i<allCells.length; i++) {
-                if(!allCells[i].classList.contains('opacity-0')) finished = false;
-            }
-            if(finished) {
-                score = Math.max(bbzScoreA, bbzScoreB);
-                setTimeout(()=>endGame(`Publishing Complete! Team A: ${bbzScoreA} | Team B: ${bbzScoreB}`), 1000);
-            }
+            for(let i=0; i<allCells.length; i++) { if(!allCells[i].classList.contains('opacity-0')) finished = false; }
+            if(finished) { score = Math.max(bbzScoreA, bbzScoreB); setTimeout(()=>endGame(`Publishing Complete! Team A: ${bbzScoreA} | Team B: ${bbzScoreB}`), 1000); }
         }
 
         // ==========================================
-        // GAME 9: PUBLISHING TYCOON (Monopoly)
+        // GAME 9: PUBLISHING TYCOON (TRUE MONOPOLY)
         // ==========================================
         let tycPlayers = [
             { pos: 0, money: 1000, tokenObj: null },
             { pos: 0, money: 1000, tokenObj: null }
         ];
-        let tycTurn = 0; // 0 for A, 1 for B
+        let tycTurn = 0; 
         let tycDeckQ = [];
         let tycDeckC = [];
 
@@ -1796,13 +1737,13 @@
             tycDeckQ = shuffleArray([...tycoonQuiz]);
             tycDeckC = shuffleArray([...tycoonChance]);
             
+            // Reset property ownership
+            tycoonSpaces.forEach(sp => { if (sp.type === 'prop') sp.owner = null; });
+            
             updateTycoonUI();
             
-            // Generate Board
             const grid = document.getElementById('tycoon-board-grid');
-            Array.from(grid.children).forEach(child => {
-                if(child.classList.contains('tycoon-space')) child.remove();
-            });
+            Array.from(grid.children).forEach(child => { if(child.classList.contains('tycoon-space')) child.remove(); });
 
             tycoonSpaces.forEach(sp => {
                 const div = document.createElement('div');
@@ -1818,7 +1759,7 @@
                 }
                 
                 let headerColor = sp.color ? `background-color: ${sp.color};` : '';
-                let headerHTML = sp.type === 'prop' ? `<div class="w-full h-3 rounded-t-sm mb-1 absolute top-0 left-0" style="${headerColor}"></div>` : '';
+                let headerHTML = sp.type === 'prop' ? `<div class="w-full h-3 rounded-t-sm mb-1 absolute top-0 left-0 opacity-50" style="${headerColor}"></div>` : '';
 
                 div.innerHTML = `
                     ${headerHTML}
@@ -1854,6 +1795,33 @@
                 document.getElementById('tyc-turn-indicator').textContent = "Team B's Turn";
                 document.getElementById('tyc-turn-indicator').className = "text-2xl font-display text-rose-400 mb-2 tracking-widest uppercase";
             }
+
+            // Visual Update for Owned Properties
+            tycoonSpaces.forEach(sp => {
+                if(sp.type === 'prop' && sp.owner !== null) {
+                    const el = document.getElementById(`tyc-space-${sp.id}`);
+                    const ownerBannerId = `owner-banner-${sp.id}`;
+                    let banner = document.getElementById(ownerBannerId);
+                    
+                    if (!banner) {
+                        banner = document.createElement('div');
+                        banner.id = ownerBannerId;
+                        el.appendChild(banner);
+                    }
+
+                    if(sp.owner === 0) {
+                        el.style.borderColor = '#3b82f6';
+                        el.style.borderWidth = '3px';
+                        banner.textContent = "TEAM A";
+                        banner.className = "absolute -top-3 left-1/2 transform -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-sm text-white shadow-md z-10 bg-blue-600 animate-pop-in whitespace-nowrap";
+                    } else if (sp.owner === 1) {
+                        el.style.borderColor = '#f43f5e';
+                        el.style.borderWidth = '3px';
+                        banner.textContent = "TEAM B";
+                        banner.className = "absolute -top-3 left-1/2 transform -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-sm text-white shadow-md z-10 bg-rose-600 animate-pop-in whitespace-nowrap";
+                    }
+                }
+            });
         }
 
         function rollTycoonDice() {
@@ -1872,7 +1840,7 @@
             setTimeout(() => {
                 clearInterval(shuffleInt);
                 display.classList.remove('dice-roll-anim');
-                roll = Math.floor(Math.random() * 4) + 1; // 1 to 4 for faster board traversal
+                roll = Math.floor(Math.random() * 4) + 1; 
                 display.textContent = roll;
                 document.getElementById('tyc-status-text').textContent = `Rolled a ${roll}! moving...`;
                 
@@ -1903,7 +1871,7 @@
             
             if (p.pos + roll >= 16) {
                 p.money += 200;
-                document.getElementById('tyc-status-text').textContent = `Passed START! Collected $200 Royalties.`;
+                document.getElementById('tyc-status-text').textContent = `Passed START! Collected $200 Salary.`;
                 updateTycoonUI();
             }
 
@@ -1919,17 +1887,28 @@
             const space = tycoonSpaces[spaceId];
             
             if (space.type === 'prop') {
-                showTycoonQuizModal(space);
+                if (space.owner === null) {
+                    if (tycPlayers[tycTurn].money >= 100) {
+                        showTycoonQuizModal(space, spaceId);
+                    } else {
+                        showTycoonNotice("Insufficient Funds", "You need $100 to attempt acquiring this office. You just browse through.", 0);
+                    }
+                } else if (space.owner === tycTurn) {
+                    showTycoonNotice("Your Office", "You already own " + space.name + ". Enjoy a quick coffee break.", 0);
+                } else {
+                    // Pay Rent to Opponent
+                    tycPlayers[tycTurn].money -= 100;
+                    tycPlayers[space.owner].money += 100;
+                    let ownerName = space.owner === 0 ? "Team A" : "Team B";
+                    showTycoonNotice("Royalties Due!", `This office belongs to ${ownerName}. You paid them $100 in royalties.`, 0);
+                }
             } else if (space.type === 'chance') {
                 showTycoonChanceModal();
             } else if (space.type === 'tax') {
-                showTycoonNotice("Expenses Due", "You must pay for proofreading and cover design. Lose $100.", -100);
+                showTycoonNotice("Editing Fees Due", "You must pay for proofreading and cover design. Lose $100.", -100);
             } else if (space.type === 'penalty') {
-                if(spaceId === 4) {
-                    showTycoonNotice("Plagiarism Fine!", "You stole a chapter from another book! Pay a $150 fine.", -150);
-                } else {
-                    showTycoonNotice("Writer's Block!", "You can't think of an ending. Pay $150 for a writing retreat.", -150);
-                }
+                if(spaceId === 4) showTycoonNotice("Plagiarism Fine!", "You stole a chapter from another book! Pay a $150 fine.", -150);
+                else showTycoonNotice("Writer's Block!", "You can't think of an ending. Pay $150 for a writing retreat.", -150);
             } else if (space.type === 'bonus') {
                 showTycoonNotice("NYT Bestseller!", "Your new novel hit number one! Collect a $200 bonus!", 200);
             } else if (space.type === 'corner' && spaceId === 0) {
@@ -1937,13 +1916,13 @@
             }
         }
 
-        function showTycoonQuizModal(space) {
+        function showTycoonQuizModal(space, spaceId) {
             if (tycDeckQ.length === 0) tycDeckQ = shuffleArray([...tycoonQuiz]);
             const q = tycDeckQ.pop();
             
-            document.getElementById('tyc-modal-header').textContent = `Property Action: ${space.name}`;
+            document.getElementById('tyc-modal-header').textContent = `Acquisition Opportunity: ${space.name}`;
             document.getElementById('tyc-modal-title').textContent = "Editorial Challenge";
-            document.getElementById('tyc-modal-desc').textContent = q.q;
+            document.getElementById('tyc-modal-desc').textContent = `Answer correctly to claim this office for $100. If you get it wrong, you lose $50!\n\n"${q.q}"`;
             
             const optArea = document.getElementById('tyc-options-area');
             optArea.innerHTML = '';
@@ -1954,28 +1933,33 @@
                 const btn = document.createElement('button');
                 btn.className = "bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-6 rounded-xl border border-slate-600 transition text-lg shadow-md";
                 btn.textContent = optText;
-                btn.onclick = () => handleTycoonQuizAnswer(index === q.a, btn, optArea);
+                btn.onclick = () => handleTycoonQuizAnswer(index === q.a, btn, optArea, spaceId);
                 optArea.appendChild(btn);
             });
             
             document.getElementById('tyc-modal').classList.remove('hidden');
         }
 
-        function handleTycoonQuizAnswer(isCorrect, btnElement, container) {
+        function handleTycoonQuizAnswer(isCorrect, btnElement, container, spaceId) {
             Array.from(container.children).forEach(b => b.disabled = true);
             
             if(isCorrect) {
                 btnElement.classList.replace('bg-slate-800', 'bg-emerald-600');
                 btnElement.classList.replace('border-slate-600', 'border-emerald-400');
-                tycPlayers[tycTurn].money += 200;
-                document.getElementById('tyc-modal-title').textContent = "Published!";
-                document.getElementById('tyc-modal-desc').textContent = "You successfully managed the property and earned $200 in royalties!";
+                
+                tycPlayers[tycTurn].money -= 100;
+                tycoonSpaces[spaceId].owner = tycTurn;
+                
+                let teamColor = tycTurn === 0 ? "text-blue-400" : "text-rose-400";
+                document.getElementById('tyc-modal-title').innerHTML = `<span class="${teamColor}">Office Acquired!</span>`;
+                document.getElementById('tyc-modal-desc').textContent = `Brilliant! You paid $100 and successfully acquired ${tycoonSpaces[spaceId].name}. Rivals will now pay you $100 when they land here!`;
             } else {
                 btnElement.classList.replace('bg-slate-800', 'bg-rose-600');
                 btnElement.classList.add('animate-shake');
+                
                 tycPlayers[tycTurn].money -= 50;
                 document.getElementById('tyc-modal-title').textContent = "Rejected!";
-                document.getElementById('tyc-modal-desc').textContent = "Incorrect literary knowledge. You lost $50 in wasted paper.";
+                document.getElementById('tyc-modal-desc').textContent = "Incorrect literary knowledge! You lost $50 in wasted paper and the office remains unowned.";
             }
             
             updateTycoonUI();
@@ -1984,13 +1968,12 @@
             setTimeout(() => {
                 container.classList.add('hidden');
                 document.getElementById('tyc-action-area').classList.remove('hidden');
-            }, 1000);
+            }, 1500); 
         }
 
         function showTycoonChanceModal() {
             if (tycDeckC.length === 0) tycDeckC = shuffleArray([...tycoonChance]);
             const card = tycDeckC.pop();
-            
             showTycoonNotice(card.title, card.desc, card.change);
         }
 
@@ -2012,10 +1995,10 @@
         function checkBankruptcy() {
             if (tycPlayers[0].money < 0) {
                 score = tycPlayers[1].money;
-                setTimeout(() => endGame("Cancelled! Team B Wins the market!"), 1500);
+                setTimeout(() => endGame("Cancelled! Team B bankrupts Team A!"), 2000);
             } else if (tycPlayers[1].money < 0) {
                 score = tycPlayers[0].money;
-                setTimeout(() => endGame("Cancelled! Team A Wins the market!"), 1500);
+                setTimeout(() => endGame("Cancelled! Team A bankrupts Team B!"), 2000);
             }
         }
 
