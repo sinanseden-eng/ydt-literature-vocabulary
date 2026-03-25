@@ -279,9 +279,9 @@
                     <div>
                         <div class="text-5xl mb-4 drop-shadow-md">🏢</div>
                         <h2 class="text-2xl text-amber-400 mb-2 font-display italic">Publishing Tycoon</h2>
-                        <p class="text-indigo-100 text-sm mb-6">Expanded 6x6 Map! Land on offices, buy them if you want, and charge the other team royalties!</p>
+                        <p class="text-indigo-100 text-sm mb-6">Pick your custom tokens! Land on offices, buy them if you want, and charge the other team royalties!</p>
                     </div>
-                    <button class="w-full bg-indigo-950 hover:bg-indigo-900 text-amber-400 border border-amber-500/30 font-bold py-3 rounded text-lg transition-all tracking-wider font-display">Roll the Dice</button>
+                    <button class="w-full bg-indigo-950 hover:bg-indigo-900 text-amber-400 border border-amber-500/30 font-bold py-3 rounded text-lg transition-all tracking-wider font-display">Enter Setup</button>
                 </div>
             </div>
         </div>
@@ -477,13 +477,6 @@
                         <button id="jeop-mode-btn" onclick="toggleJeopMode()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-bold transition shadow-md border border-emerald-500">Normal (Safe)</button>
                         <span id="jeop-mode-desc" class="text-xs text-slate-400 italic hidden md:inline">Wrong answers do not lose points.</span>
                     </div>
-                    
-                    <div class="flex items-center gap-3 bg-black/40 p-2 rounded-lg border border-slate-600">
-                        <span class="text-indigo-300 text-xs font-bold uppercase tracking-widest mr-2">Base Timer:</span>
-                        <button onclick="adjustJeopGlobalTimer(-5)" class="text-amber-500 hover:text-amber-300 font-bold px-2 text-lg">-5s</button>
-                        <span id="jeop-global-time-display" class="text-2xl font-mono text-white font-bold w-12 text-center">30</span>
-                        <button onclick="adjustJeopGlobalTimer(5)" class="text-amber-500 hover:text-amber-300 font-bold px-2 text-lg">+5s</button>
-                    </div>
                 </div>
 
                 <div class="bg-slate-900 p-3 rounded-xl border-2 border-slate-700 shadow-2xl overflow-x-auto">
@@ -495,14 +488,6 @@
                         
                         <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-700 pb-6 gap-4">
                             <h3 id="jeop-cat-val" class="text-amber-400 font-display text-3xl uppercase tracking-widest"></h3>
-                            
-                            <div class="flex items-center gap-3 bg-black/60 p-3 rounded-xl border border-slate-600">
-                                <span class="text-indigo-300 text-xs font-bold uppercase tracking-widest">Time:</span>
-                                <span id="jeop-timer-display" class="text-4xl font-mono text-rose-400 font-bold w-20 text-center drop-shadow-md">30</span>
-                                <div class="border-l border-slate-600 pl-4 flex gap-2">
-                                    <button onclick="pauseJeopTimer()" id="jeop-pause-btn" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm font-bold transition">Pause</button>
-                                </div>
-                            </div>
                         </div>
 
                         <p id="jeop-q-text" class="text-white text-3xl md:text-5xl font-display italic mb-12 leading-relaxed"></p>
@@ -530,7 +515,7 @@
                         </div>
 
                         <div class="flex justify-center gap-6 mt-10">
-                            <button id="jeop-reveal-btn" onclick="document.getElementById('jeop-answer-area').classList.remove('hidden'); this.classList.add('hidden'); clearInterval(jeopTimerInterval);" class="bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-xl transition text-2xl shadow-lg font-display tracking-widest flex-1 max-w-sm">Reveal Answer</button>
+                            <button id="jeop-reveal-btn" onclick="document.getElementById('jeop-answer-area').classList.remove('hidden'); this.classList.add('hidden');" class="bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-xl transition text-2xl shadow-lg font-display tracking-widest flex-1 max-w-sm">Reveal Answer</button>
                             <button onclick="cancelJeopardy()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-xl transition text-sm uppercase tracking-widest border border-slate-600">Go Back / Cancel</button>
                         </div>
                     </div>
@@ -591,17 +576,6 @@
                     </div>
                 </div>
 
-                <!-- Timer for Baamboozle -->
-                <div class="bg-black/30 border border-amber-500/20 rounded-xl p-4 mb-6 text-center max-w-sm mx-auto shadow-inner flex flex-col items-center">
-                    <div class="text-4xl font-display text-white mb-2 tracking-widest" id="bbz-timer-display">01:00</div>
-                    <div class="flex justify-center items-center gap-3">
-                        <button onclick="adjustBbzTimer(-10)" class="text-amber-500 font-bold hover:text-amber-300 transition">-10s</button>
-                        <button onclick="startBbzTimer()" class="bg-amber-700 hover:bg-amber-600 text-white px-4 py-1 rounded text-sm transition shadow-sm">Start</button>
-                        <button onclick="pauseBbzTimer()" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-1 rounded text-sm transition shadow-sm">Pause</button>
-                        <button onclick="adjustBbzTimer(10)" class="text-amber-500 font-bold hover:text-amber-300 transition">+10s</button>
-                    </div>
-                </div>
-
                 <div class="bg-slate-900 p-4 rounded-xl border-2 border-slate-700 shadow-2xl">
                     <div id="bbz-board" class="grid grid-cols-4 md:grid-cols-6 gap-3"></div>
                 </div>
@@ -610,6 +584,19 @@
                     <div class="bg-slate-900 p-8 md:p-12 rounded-3xl border-2 border-amber-600 max-w-4xl w-full text-center relative shadow-2xl">
                         
                         <div id="bbz-q-area" class="hidden">
+                            <!-- NEW: Timer inside the Question Modal -->
+                            <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-700 pb-4 gap-4">
+                                <h3 class="text-amber-400 font-display text-2xl uppercase tracking-widest">Question</h3>
+                                <div class="flex items-center gap-3 bg-black/60 p-2 rounded-xl border border-slate-600">
+                                    <button onclick="adjustBbzTimer(-5)" class="text-amber-500 hover:text-amber-300 font-bold px-2 text-lg">-5s</button>
+                                    <span id="bbz-timer-display" class="text-3xl font-mono text-red-400 font-bold w-16 text-center">30</span>
+                                    <button onclick="adjustBbzTimer(5)" class="text-amber-500 hover:text-amber-300 font-bold px-2 text-lg">+5s</button>
+                                    <div class="border-l border-slate-600 pl-3 flex gap-2">
+                                        <button onclick="pauseBbzTimer()" id="bbz-pause-btn" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded text-sm font-bold transition">Pause</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <p id="bbz-q-text" class="text-white text-4xl md:text-5xl font-display italic mb-12 leading-relaxed"></p>
                             
                             <div id="bbz-answer-area" class="hidden">
@@ -625,7 +612,7 @@
                             </div>
 
                             <div class="flex justify-center gap-6 mt-10">
-                                <button id="bbz-reveal-btn" onclick="document.getElementById('bbz-answer-area').classList.remove('hidden'); this.classList.add('hidden');" class="bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-xl transition text-2xl shadow-lg font-display tracking-widest flex-1 max-w-sm">Reveal Answer</button>
+                                <button id="bbz-reveal-btn" onclick="document.getElementById('bbz-answer-area').classList.remove('hidden'); this.classList.add('hidden'); pauseBbzTimer();" class="bg-amber-700 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-xl transition text-2xl shadow-lg font-display tracking-widest flex-1 max-w-sm">Reveal Answer</button>
                                 <button onclick="cancelBbz()" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 px-8 rounded-xl transition text-sm uppercase tracking-widest border border-slate-500">Cancel</button>
                             </div>
                         </div>
@@ -646,11 +633,33 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 9: PUBLISHING TYCOON (Expanded 6x6) ================= -->
+        <!-- ================= VIEW 9.0: TYCOON SETUP (NEW) ================= -->
+        <div id="view-tycoon-setup" class="view text-center">
+            <div class="glass gold-border rounded-3xl p-10 max-w-4xl mx-auto animate-pop-in">
+                <button onclick="showView('dashboard')" class="text-amber-500 hover:text-amber-300 font-bold tracking-widest text-sm uppercase absolute top-6 left-6">← Back</button>
+                <h2 class="text-4xl font-display text-amber-400 mb-2 mt-4">Tycoon Setup</h2>
+                <p class="text-slate-300 mb-8">Choose your team tokens before entering the labyrinth.</p>
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <div class="bg-blue-900/40 p-6 rounded-2xl border-2 border-blue-500/50">
+                        <h3 class="text-blue-400 font-display text-2xl mb-4">Team A Token</h3>
+                        <div class="text-7xl mb-4 h-24 flex items-center justify-center filter drop-shadow-lg" id="setup-token-a">🖋️</div>
+                        <div class="flex flex-wrap justify-center gap-2 max-w-xs mx-auto" id="setup-grid-a"></div>
+                    </div>
+                    <div class="bg-rose-900/40 p-6 rounded-2xl border-2 border-rose-500/50">
+                        <h3 class="text-rose-400 font-display text-2xl mb-4">Team B Token</h3>
+                        <div class="text-7xl mb-4 h-24 flex items-center justify-center filter drop-shadow-lg" id="setup-token-b">📖</div>
+                        <div class="flex flex-wrap justify-center gap-2 max-w-xs mx-auto" id="setup-grid-b"></div>
+                    </div>
+                </div>
+                <button onclick="confirmTycoonSetup()" class="bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-2xl py-4 px-12 rounded-full shadow-lg hover:scale-105 transition border border-amber-300">Start Trading</button>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 9.1: PUBLISHING TYCOON (Expanded 6x6) ================= -->
         <div id="view-tycoon" class="view">
             <div class="glass gold-border rounded-3xl p-6 md:p-10 relative max-w-6xl mx-auto">
                 <div class="flex justify-between items-center mb-6">
-                    <button onclick="showView('dashboard')" class="text-amber-500 hover:text-amber-300 font-bold tracking-widest text-sm uppercase">← Back</button>
+                    <button onclick="showView('dashboard')" class="text-amber-500 hover:text-amber-300 font-bold tracking-widest text-sm uppercase flex items-center gap-2">← Back to Hub</button>
                     <div class="text-3xl font-display text-amber-400">Publishing Tycoon</div>
                 </div>
 
@@ -661,7 +670,7 @@
                             <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
                             <h3 class="text-blue-300 font-display text-xl mb-1 uppercase tracking-widest flex items-center justify-between">
                                 <span>Team A</span>
-                                <button onclick="cycleTycoonIcon(0)" id="tyc-p0-icon" class="hover:scale-110 transition bg-black/30 rounded-full w-10 h-10 flex items-center justify-center border border-blue-400/50 shadow-inner" title="Change Icon">🖋️</button>
+                                <div id="tyc-p0-icon" class="bg-black/30 rounded-full w-10 h-10 flex items-center justify-center border border-blue-400/50 shadow-inner text-xl">🖋️</div>
                             </h3>
                             <div class="text-4xl font-black text-white font-mono mt-2">$<span id="tyc-score-0">1500</span></div>
                         </div>
@@ -670,7 +679,7 @@
                             <div class="absolute top-0 left-0 w-2 h-full bg-rose-500"></div>
                             <h3 class="text-rose-300 font-display text-xl mb-1 uppercase tracking-widest flex items-center justify-between">
                                 <span>Team B</span>
-                                <button onclick="cycleTycoonIcon(1)" id="tyc-p1-icon" class="hover:scale-110 transition bg-black/30 rounded-full w-10 h-10 flex items-center justify-center border border-rose-400/50 shadow-inner" title="Change Icon">📖</button>
+                                <div id="tyc-p1-icon" class="bg-black/30 rounded-full w-10 h-10 flex items-center justify-center border border-rose-400/50 shadow-inner text-xl">📖</div>
                             </h3>
                             <div class="text-4xl font-black text-white font-mono mt-2">$<span id="tyc-score-1">1500</span></div>
                         </div>
@@ -1029,7 +1038,7 @@
             if (type === 'defuse') initDefuse();
             if (type === 'millionaire') initMillionaire();
             if (type === 'baamboozle') initBaamboozle();
-            if (type === 'tycoon') initTycoon();
+            if (type === 'tycoon') showTycoonSetup();
         }
 
         function endGame(message, gifHtml = '') {
@@ -1314,7 +1323,7 @@
         }
 
         // ==========================================
-        // GAME 5: PLOT CLASH (Sentence)
+        // GAME 5: PLOT CLASH (Sentence Clash)
         // ==========================================
         let team1Score = 0, team2Score = 0, snTimeLeft = 60, snInitial = 60, snIsRunning = false;
         function initSentenceGame() { team1Score=0; team2Score=0; updateScoreboard(); resetSnTimer(); showView('sentence'); nextSentenceWords(); }
@@ -1704,7 +1713,7 @@
         // GAME 8: WRITER'S BLOCK (Baamboozle)
         // ==========================================
         let bbzScoreA = 0, bbzScoreB = 0, currentBbzCell = null, currentBbzData = null;
-        let bbzTimeLeft = 60, bbzInitial = 60, bbzIsRunning = false;
+        let bbzTimeLeft = 30, bbzInitial = 30, bbzIsRunning = false;
 
         function initBaamboozle() {
             bbzScoreA = 0; bbzScoreB = 0;
@@ -1729,12 +1738,12 @@
         // --- BAAMBOOZLE TIMER LOGIC ---
         function updateBbzTimerDisplay() {
             const d = document.getElementById('bbz-timer-display');
-            d.innerText = `${Math.floor(bbzTimeLeft/60).toString().padStart(2,'0')}:${(bbzTimeLeft%60).toString().padStart(2,'0')}`;
-            if(bbzTimeLeft <= 10 && bbzTimeLeft > 0) d.classList.add('text-rose-500'); else d.classList.remove('text-rose-500');
+            d.innerText = bbzTimeLeft;
+            if(bbzTimeLeft <= 10 && bbzTimeLeft > 0) d.classList.add('text-red-500', 'animate-pulse'); else d.classList.remove('text-red-500', 'animate-pulse');
         }
         function adjustBbzTimer(amt) {
+            bbzInitial = Math.max(5, bbzInitial + amt);
             if(!bbzIsRunning) {
-                bbzInitial = Math.max(10, bbzInitial + amt);
                 bbzTimeLeft = bbzInitial;
                 updateBbzTimerDisplay();
             }
@@ -1742,20 +1751,24 @@
         function startBbzTimer() {
             if(!bbzIsRunning && bbzTimeLeft > 0) {
                 bbzIsRunning = true;
+                document.getElementById('bbz-pause-btn').textContent = "Pause";
                 globalTimerInterval = setInterval(() => {
                     bbzTimeLeft--; updateBbzTimerDisplay();
                     if(bbzTimeLeft <= 0) {
                         clearInterval(globalTimerInterval); bbzIsRunning = false;
                         const d = document.getElementById('bbz-timer-display');
-                        d.innerText = "TIME'S UP!";
-                        d.classList.add('text-rose-500', 'animate-shake');
-                        setTimeout(() => d.classList.remove('animate-shake'), 500);
+                        d.innerText = "00";
                     }
                 }, 1000);
             }
         }
         function pauseBbzTimer() {
-            bbzIsRunning = false; clearInterval(globalTimerInterval);
+            if (bbzIsRunning) {
+                bbzIsRunning = false; clearInterval(globalTimerInterval);
+                document.getElementById('bbz-pause-btn').textContent = "Resume";
+            } else {
+                startBbzTimer();
+            }
         }
         function resetBbzTimer() {
             bbzIsRunning = false; clearInterval(globalTimerInterval);
@@ -1776,13 +1789,16 @@
                 document.getElementById('bbz-a-text').textContent = item.a;
                 document.getElementById('bbz-answer-area').classList.add('hidden');
                 document.getElementById('bbz-reveal-btn').classList.remove('hidden');
+                
+                // Automatically reset and start timer for the new question
+                resetBbzTimer();
+                startBbzTimer();
             } else {
                 document.getElementById('bbz-q-area').classList.add('hidden');
                 document.getElementById('bbz-p-area').classList.remove('hidden');
                 document.getElementById('bbz-p-title').textContent = item.title;
                 document.getElementById('bbz-p-desc').textContent = item.desc;
             }
-            // Auto start timer for question if needed (Optional)
         }
 
         function resolveBbz(team) { 
@@ -1819,13 +1835,18 @@
         }
 
         function closeBbzModal() {
+            clearInterval(globalTimerInterval);
             currentBbzCell.classList.add('opacity-0', 'cursor-default');
             currentBbzCell.classList.remove('hover:bg-indigo-800', 'active:translate-y-1');
             document.getElementById('bbz-modal').classList.add('hidden');
             checkBbzEnd();
         }
 
-        function cancelBbz() { document.getElementById('bbz-modal').classList.add('hidden'); }
+        function cancelBbz() { 
+            clearInterval(globalTimerInterval);
+            document.getElementById('bbz-modal').classList.add('hidden'); 
+        }
+        
         function updateBbzScores() { document.getElementById('bbz-score-a').textContent = bbzScoreA; document.getElementById('bbz-score-b').textContent = bbzScoreB; }
         
         function checkBbzEnd() {
@@ -1843,22 +1864,40 @@
         // ==========================================
         // GAME 9: PUBLISHING TYCOON (TRUE MONOPOLY - 6x6)
         // ==========================================
-        const tycoonIcons = ['🖋️', '📖', '🎩', '🚢', '🚀', '👑', '📜', '🎭'];
-        let tycIconIdxA = 0;
-        let tycIconIdxB = 1;
+        
+        const ALL_TOKENS = ['🖋️', '📖', '🎩', '🚢', '🚀', '👑', '📜', '🎭', '🦄', '🦖', '🍕', '🍔', '🎸', '🚗', '💎', '🎲', '🐶', '🐱', '🦊', '🦁', '⚽', '🎨'];
+        let tycTokenA = '🖋️';
+        let tycTokenB = '📖';
 
-        function cycleTycoonIcon(team) {
-            if(team === 0) {
-                tycIconIdxA = (tycIconIdxA + 1) % tycoonIcons.length;
-                if(tycIconIdxA === tycIconIdxB) tycIconIdxA = (tycIconIdxA + 1) % tycoonIcons.length;
-                document.getElementById('tyc-p0-icon').textContent = tycoonIcons[tycIconIdxA];
-                document.getElementById('token-0').textContent = tycoonIcons[tycIconIdxA];
-            } else {
-                tycIconIdxB = (tycIconIdxB + 1) % tycoonIcons.length;
-                if(tycIconIdxB === tycIconIdxA) tycIconIdxB = (tycIconIdxB + 1) % tycoonIcons.length;
-                document.getElementById('tyc-p1-icon').textContent = tycoonIcons[tycIconIdxB];
-                document.getElementById('token-1').textContent = tycoonIcons[tycIconIdxB];
-            }
+        function showTycoonSetup() {
+            showView('tycoon-setup');
+            renderTycoonTokenSelectors();
+        }
+
+        function renderTycoonTokenSelectors() {
+            const gridA = document.getElementById('setup-grid-a');
+            const gridB = document.getElementById('setup-grid-b');
+            gridA.innerHTML = ''; gridB.innerHTML = '';
+            
+            ALL_TOKENS.forEach(token => {
+                // Team A
+                const btnA = document.createElement('button');
+                btnA.className = `text-2xl p-2 rounded hover:bg-blue-500/30 transition ${tycTokenA === token ? 'bg-blue-500/50 ring-2 ring-blue-300' : ''}`;
+                btnA.textContent = token;
+                btnA.onclick = () => { tycTokenA = token; renderTycoonTokenSelectors(); document.getElementById('setup-token-a').textContent = token; };
+                gridA.appendChild(btnA);
+
+                // Team B
+                const btnB = document.createElement('button');
+                btnB.className = `text-2xl p-2 rounded hover:bg-rose-500/30 transition ${tycTokenB === token ? 'bg-rose-500/50 ring-2 ring-rose-300' : ''}`;
+                btnB.textContent = token;
+                btnB.onclick = () => { tycTokenB = token; renderTycoonTokenSelectors(); document.getElementById('setup-token-b').textContent = token; };
+                gridB.appendChild(btnB);
+            });
+        }
+
+        function confirmTycoonSetup() {
+            initTycoon();
         }
 
         let tycPlayers = [
@@ -1879,6 +1918,12 @@
             tycDeckQ = shuffleArray([...tycoonQuiz]);
             tycDeckC = shuffleArray([...tycoonChance]);
             activeSpaceId = null;
+            
+            // Set Chosen Tokens
+            document.getElementById('tyc-p0-icon').textContent = tycTokenA;
+            document.getElementById('token-0').textContent = tycTokenA;
+            document.getElementById('tyc-p1-icon').textContent = tycTokenB;
+            document.getElementById('token-1').textContent = tycTokenB;
             
             // Reset property ownership
             tycoonSpaces.forEach(sp => { if (sp.type === 'prop') sp.owner = null; });
